@@ -3,8 +3,9 @@ extends Node
 @export var mob_scene: PackedScene
 #@onready var player_node= get_node("player")
 var score =0
+var score2 = 0.0
 var scoreCheck = 0
-var BLUE = Color(0.4,0.67,0.86,0.7)
+var BLUE = Color(0.38,0.50,0.90,1.0)
 
 func _ready():
 	pass
@@ -18,6 +19,7 @@ func game_over() -> void:
 
 func new_game():
 	score = 0
+	score2 = 0.0
 	scoreCheck = 0
 	%Player.health = 100.0
 	%ColorRect.color = BLUE
@@ -29,16 +31,20 @@ func new_game():
 	$Music.play()
 	
 func _process(delta):
-	if score >= (scoreCheck + 2):
+	$MobTimer.wait_time = 1.0/(score2 + 0.1)
+	print($MobTimer.wait_time)
+	if score >= (scoreCheck + 10):
 		scoreCheck=score
 		var darkColor = %ColorRect.color #Color(0.1,0.1,0.1,0.1)
 		
-		darkColor.r -= 0.025
-		darkColor.g -= 0.025
-		darkColor.b -= 0.025
+		darkColor.r -= 0.04
+		darkColor.g -= 0.055
+		darkColor.b -= 0.1
 		
 		print(darkColor)
 		%ColorRect.color = darkColor
+		
+	
 		
 func _on_mob_timer_timeout() -> void:
 	# Create a new instance of the Mob scene.
@@ -59,7 +65,7 @@ func _on_mob_timer_timeout() -> void:
 	mob.rotation = direction
 
 	# Choose the velocity for the mob.
-	var velocity = Vector2(randf_range(150.0, 250.0), 0.0)
+	var velocity = Vector2(randf_range(150.0+(score*3), 250.0+(score*10)), 0.0)
 	mob.linear_velocity = velocity.rotated(direction)
 
 	# Spawn the mob by adding it to the Main scene.
@@ -67,6 +73,7 @@ func _on_mob_timer_timeout() -> void:
 
 func _on_score_timer_timeout() -> void:
 	score += 1
+	score2+= 1.0
 	$HUD.update_score(score)
 
 func _on_start_timer_timeout() -> void:

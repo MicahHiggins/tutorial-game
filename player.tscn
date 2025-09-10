@@ -54,6 +54,7 @@ corner_radius_bottom_right = 10
 corner_radius_bottom_left = 10
 
 [node name="Player" type="Area2D"]
+position = Vector2(649, 411)
 script = ExtResource("1_sweqy")
 metadata/_edit_group_ = true
 
