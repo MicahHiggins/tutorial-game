@@ -31,7 +31,7 @@ func new_game():
 	$Music.play()
 	
 func _process(delta):
-	$MobTimer.wait_time = 1.0/(score2 + 0.1)
+	$MobTimer.wait_time = 1.0/((score2/15) + 5.0)
 	print($MobTimer.wait_time)
 	if score >= (scoreCheck + 10):
 		scoreCheck=score
