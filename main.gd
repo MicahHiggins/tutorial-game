@@ -16,7 +16,7 @@ func game_over() -> void:
 
 func new_game():
 	score = 0
-	#player_node.health = 100.0
+	%Player.health = 100.0
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)

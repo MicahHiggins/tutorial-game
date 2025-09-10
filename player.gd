@@ -52,6 +52,7 @@ func _process(delta):
 
 	
 func start(pos):
+	%ProgressBar.value = health
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
