@@ -7,6 +7,7 @@ var health = 100.0
 
 func _ready():
 	screen_size = get_viewport_rect().size
+	print(screen_size)
 	hide()
 	
 func _process(delta):

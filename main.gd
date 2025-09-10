@@ -1,8 +1,10 @@
 extends Node
 
 @export var mob_scene: PackedScene
-@onready var player_node= get_node("player")
-var score
+#@onready var player_node= get_node("player")
+var score =0
+var scoreCheck = 0
+var BLUE = Color(0.4,0.67,0.86,0.7)
 
 func _ready():
 	pass
@@ -16,15 +18,28 @@ func game_over() -> void:
 
 func new_game():
 	score = 0
+	scoreCheck = 0
 	%Player.health = 100.0
+	%ColorRect.color = BLUE
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
 	$HUD.update_score(score)
 	$HUD.show_message("Get Ready")
 	get_tree().call_group("mobs", "queue_free")
 	$Music.play()
-
-
+	
+func _process(delta):
+	if score >= (scoreCheck + 2):
+		scoreCheck=score
+		var darkColor = %ColorRect.color #Color(0.1,0.1,0.1,0.1)
+		
+		darkColor.r -= 0.025
+		darkColor.g -= 0.025
+		darkColor.b -= 0.025
+		
+		print(darkColor)
+		%ColorRect.color = darkColor
+		
 func _on_mob_timer_timeout() -> void:
 	# Create a new instance of the Mob scene.
 	var mob = mob_scene.instantiate()
