@@ -30,3 +30,6 @@ Assets:
 	Added health and shield powerups but the collisions aren't working. Took about 4 hours
 	
 	Added Bomb powerup, dash skill and fast enemies once you reach a certain point. Powerup collisions still aren't working and I have no idea why. Took probably 4 more hours. Around 8 hours total today, mostly due to trying to figure out why collisions aren't working
+	
+9/17
+	FastEnemies and Bolt now despawn when starting a new game,

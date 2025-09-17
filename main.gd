@@ -29,6 +29,7 @@ func game_over() -> void:
 	$HealthPowerTimer.stop()
 	$ShieldPowerTimer.stop()
 	$BombPowerTimer.stop()
+	$FastEnemyTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
 	$DeathSound.play()
@@ -47,6 +48,7 @@ func new_game():
 	get_tree().call_group("power_ups", "queue_free")
 	get_tree().call_group("Shields", "queue_free")
 	get_tree().call_group("Bombs", "queue_free")
+	get_tree().call_group("Bolts", "queue_free")
 	$Music.play()
 	#%player.protection.hide()
 	
