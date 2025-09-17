@@ -1,0 +1,38 @@
+[gd_scene load_steps=5 format=3 uid="uid://bx1g0gqfkew4b"]
+
+[ext_resource type="Texture2D" uid="uid://demh3osijerac" path="res://art/wooden_shield_with_metal_48x48.png" id="1_85c81"]
+[ext_resource type="Script" uid="uid://l4dia6orcn7m" path="res://shield.gd" id="1_w4lj6"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_x8kry"]
+radius = 24.0
+height = 50.0
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_w4lj6"]
+radius = 25.0
+height = 52.0
+
+[node name="Shield" type="RigidBody2D" groups=["Shields"]]
+collision_layer = 8
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_w4lj6")
+
+[node name="Sprite2D" type="Sprite2D" parent="." groups=["Shields"]]
+texture = ExtResource("1_85c81")
+
+[node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -4)
+shape = SubResource("CapsuleShape2D_x8kry")
+
+[node name="ShieldBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ShieldBox"]
+position = Vector2(0, -2)
+shape = SubResource("CapsuleShape2D_w4lj6")
+
+[connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

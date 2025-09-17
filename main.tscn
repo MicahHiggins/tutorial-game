@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=4 uid="uid://dh87mnej1niyg"]
+[gd_scene load_steps=12 format=4 uid="uid://dh87mnej1niyg"]
 
 [ext_resource type="Script" uid="uid://cfaq8jxty0xbd" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://3qeya4te7ai8" path="res://player.tscn" id="1_ig7tw"]
 [ext_resource type="PackedScene" uid="uid://cr5rijkoa4wvx" path="res://mob.tscn" id="2_1bvp3"]
 [ext_resource type="PackedScene" uid="uid://d0tbhf41ygshg" path="res://hud.tscn" id="4_1bvp3"]
 [ext_resource type="AudioStream" uid="uid://ci3w3bgjamyac" path="res://art/gameover.wav" id="5_lquwl"]
+[ext_resource type="PackedScene" uid="uid://0jpxybv7lmf4" path="res://power_up.tscn" id="6_7mycd"]
+[ext_resource type="PackedScene" uid="uid://bx1g0gqfkew4b" path="res://Shield.tscn" id="7_272bh"]
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
@@ -20,6 +22,12 @@ sampling_rate = 44100.0
 [sub_resource type="AudioStreamOggVorbis" id="AudioStreamOggVorbis_7mycd"]
 packet_sequence = SubResource("OggPacketSequence_1utue")
 loop = true
+
+[sub_resource type="Curve2D" id="Curve2D_lquwl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 440, 192, 0, 0, 0, 0, 440, 192, 0, 0, 0, 0, 1464, 192, 0, 0, 0, 0, 1464, 992, 0, 0, 0, 0, 448, 992)
+}
+point_count = 5
 
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
@@ -48,6 +56,12 @@ wait_time = 0.5
 wait_time = 2.0
 one_shot = true
 
+[node name="HealthPowerTimer" type="Timer" parent="."]
+wait_time = 8.106
+
+[node name="ShieldPowerTimer" type="Timer" parent="."]
+wait_time = 2.59
+
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(950, 600)
 
@@ -64,8 +78,21 @@ stream = SubResource("AudioStreamOggVorbis_7mycd")
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_lquwl")
 
+[node name="PowerUpPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_lquwl")
+
+[node name="PowerUpSpawnLocation" type="PathFollow2D" parent="PowerUpPath"]
+position = Vector2(439.816, 192)
+
+[node name="powerUp" parent="." instance=ExtResource("6_7mycd")]
+
+[node name="RigidBody2D" parent="." instance=ExtResource("7_272bh")]
+
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
 [connection signal="timeout" from="ScoreTimer" to="." method="_on_score_timer_timeout"]
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
+[connection signal="timeout" from="HealthPowerTimer" to="." method="_on_health_power_timer_timeout"]
+[connection signal="timeout" from="ShieldPowerTimer" to="." method="_on_shield_power_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
+[connection signal="heal" from="powerUp" to="." method="_on_power_up_heal"]

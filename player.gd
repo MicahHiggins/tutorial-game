@@ -4,6 +4,7 @@ signal hit
 @export var speed = 400 # How fast the player will move (pixels/sec).
 var screen_size # Size of the game window.
 var health = 100.0
+var protection = 0.0
 
 func _ready():
 	screen_size = get_viewport_rect().size
@@ -37,12 +38,18 @@ func _process(delta):
 	elif velocity.y != 0:
 		$AnimatedSprite2D.animation = "up"
 		$AnimatedSprite2D.flip_v = velocity.y > 0
+		
+	#if %HurtBox.body_entered(%Health)
 	
 	const DMG_Rate = 40.0
 	var overlapping_mobs = %HurtBox.get_overlapping_bodies()
 	if overlapping_mobs.size() > 0:
-		health-=DMG_Rate * overlapping_mobs.size() * delta
-		%ProgressBar.value = health
+		if protection > 0:
+			protection -=1.0*overlapping_mobs.size() * delta
+			%ProgressBar2.value = protection
+		else:
+			health-=DMG_Rate * overlapping_mobs.size() * delta
+			%ProgressBar.value = health
 		if health <= 0.0:
 			hide() # Player disappears after being hit.
 			hit.emit()
@@ -54,6 +61,11 @@ func _process(delta):
 	
 func start(pos):
 	%ProgressBar.value = health
+	position = pos
+	show()
+	$CollisionShape2D.disabled = false
+	
+	%ProgressBar2.value = protection
 	position = pos
 	show()
 	$CollisionShape2D.disabled = false
