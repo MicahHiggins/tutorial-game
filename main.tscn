@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://dh87mnej1niyg"]
+[gd_scene load_steps=15 format=4 uid="uid://dh87mnej1niyg"]
 
 [ext_resource type="Script" uid="uid://cfaq8jxty0xbd" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://3qeya4te7ai8" path="res://player.tscn" id="1_ig7tw"]
@@ -7,6 +7,9 @@
 [ext_resource type="AudioStream" uid="uid://ci3w3bgjamyac" path="res://art/gameover.wav" id="5_lquwl"]
 [ext_resource type="PackedScene" uid="uid://0jpxybv7lmf4" path="res://power_up.tscn" id="6_7mycd"]
 [ext_resource type="PackedScene" uid="uid://bx1g0gqfkew4b" path="res://Shield.tscn" id="7_272bh"]
+[ext_resource type="PackedScene" uid="uid://bvw4k2gad6ce2" path="res://bomb.tscn" id="8_5vw27"]
+[ext_resource type="PackedScene" uid="uid://uhbjjb2cphua" path="res://bolt.tscn" id="9_kek77"]
+[ext_resource type="PackedScene" uid="uid://c28djv5vvfu4e" path="res://fast_enemy.tscn" id="10_4c57u"]
 
 [sub_resource type="Curve2D" id="Curve2D_0xm2m"]
 _data = {
@@ -25,9 +28,9 @@ loop = true
 
 [sub_resource type="Curve2D" id="Curve2D_lquwl"]
 _data = {
-"points": PackedVector2Array(0, 0, 0, 0, 440, 192, 0, 0, 0, 0, 440, 192, 0, 0, 0, 0, 1464, 192, 0, 0, 0, 0, 1464, 992, 0, 0, 0, 0, 448, 992)
+"points": PackedVector2Array(0, 0, 0, 0, 536, 368, 0, 0, 0, 0, 776, 216, 0, 0, 0, 0, 1104, 224, 0, 0, 0, 0, 1344, 368, 0, 0, 0, 0, 1360, 696, 0, 0, 0, 0, 1120, 896, 0, 0, 0, 0, 776, 888, 0, 0, 0, 0, 536, 696)
 }
-point_count = 5
+point_count = 8
 
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
@@ -62,6 +65,24 @@ wait_time = 8.106
 [node name="ShieldPowerTimer" type="Timer" parent="."]
 wait_time = 2.59
 
+[node name="BombPowerTimer" type="Timer" parent="."]
+wait_time = 10.0
+
+[node name="BoltTimer" type="Timer" parent="."]
+wait_time = 15.0
+one_shot = true
+
+[node name="Scene1Timer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
+[node name="FastEnemyTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="Scene1EndTimer" type="Timer" parent="."]
+wait_time = 20.0
+one_shot = true
+
 [node name="StartPosition" type="Marker2D" parent="."]
 position = Vector2(950, 600)
 
@@ -82,11 +103,22 @@ stream = ExtResource("5_lquwl")
 curve = SubResource("Curve2D_lquwl")
 
 [node name="PowerUpSpawnLocation" type="PathFollow2D" parent="PowerUpPath"]
-position = Vector2(439.816, 192)
+position = Vector2(536, 368)
+rotation = -0.564569
 
 [node name="powerUp" parent="." instance=ExtResource("6_7mycd")]
+position = Vector2(-264, 48)
 
 [node name="RigidBody2D" parent="." instance=ExtResource("7_272bh")]
+position = Vector2(-184, 88)
+
+[node name="Bomb" parent="." instance=ExtResource("8_5vw27")]
+position = Vector2(-88, 58)
+
+[node name="Bolt" parent="." instance=ExtResource("9_kek77")]
+position = Vector2(-88, 1)
+
+[node name="FastEnemy" parent="." instance=ExtResource("10_4c57u")]
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]
@@ -94,5 +126,11 @@ position = Vector2(439.816, 192)
 [connection signal="timeout" from="StartTimer" to="." method="_on_start_timer_timeout"]
 [connection signal="timeout" from="HealthPowerTimer" to="." method="_on_health_power_timer_timeout"]
 [connection signal="timeout" from="ShieldPowerTimer" to="." method="_on_shield_power_timer_timeout"]
+[connection signal="timeout" from="BombPowerTimer" to="." method="_on_bomb_power_timer_timeout"]
+[connection signal="timeout" from="BoltTimer" to="." method="_on_bolt_timer_timeout"]
+[connection signal="timeout" from="Scene1Timer" to="." method="_on_scene_1_timer_timeout"]
+[connection signal="timeout" from="FastEnemyTimer" to="." method="_on_fast_enemy_timer_timeout"]
+[connection signal="timeout" from="Scene1EndTimer" to="." method="_on_scene_1_end_timer_timeout"]
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="heal" from="powerUp" to="." method="_on_power_up_heal"]
+[connection signal="bomb_collect" from="Bomb" to="." method="_on_bomb_bomb_collect"]

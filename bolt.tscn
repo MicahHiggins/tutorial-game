@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://uhbjjb2cphua"]
+
+[ext_resource type="Texture2D" uid="uid://bug2jlb4gmjdw" path="res://art/lightning_PNG34.png" id="1_bewd0"]
+[ext_resource type="Script" uid="uid://dnr6c3lokqtpc" path="res://bolt.gd" id="1_v78vr"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bewd0"]
+radius = 22.6274
+height = 90.5097
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_s5mil"]
+radius = 22.6274
+height = 90.5097
+
+[node name="Bolt" type="RigidBody2D"]
+collision_layer = 8
+collision_mask = 2
+gravity_scale = 0.0
+script = ExtResource("1_v78vr")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("1_bewd0")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = 0.785398
+shape = SubResource("CapsuleShape2D_bewd0")
+
+[node name="BoltBox" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 8
+collision_mask = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BoltBox"]
+rotation = 0.785398
+shape = SubResource("CapsuleShape2D_s5mil")

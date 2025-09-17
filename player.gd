@@ -21,6 +21,14 @@ func _process(delta):
 		velocity.y += 1
 	if Input.is_action_pressed("move_up"):
 		velocity.y -= 1
+	if Input.is_action_pressed("move_right") and Input.is_action_pressed("Dash"):
+		position.x += 20
+	if Input.is_action_pressed("move_left")  and Input.is_action_pressed("Dash"):
+		position.x -= 20
+	if Input.is_action_pressed("move_down")  and Input.is_action_pressed("Dash"):
+		position.y += 20
+	if Input.is_action_pressed("move_up")  and Input.is_action_pressed("Dash"):
+		position.y -= 20
 
 	if velocity.length() > 0:
 		velocity = velocity.normalized() * speed
