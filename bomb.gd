@@ -1,8 +1,8 @@
-extends RigidBody2D
+extends Area2D
 signal bomb_collect
 
 func _process(delta):
-	var overlapping_player = %BombBox.get_overlapping_bodies()
+	var overlapping_player = get_overlapping_areas()
 	#print(overlapping_player.size())
 	if overlapping_player.size() > 0:
 		hide()

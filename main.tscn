@@ -113,7 +113,7 @@ position = Vector2(-264, 48)
 position = Vector2(-184, 88)
 
 [node name="Bomb" parent="." instance=ExtResource("8_5vw27")]
-position = Vector2(-88, 58)
+position = Vector2(24, -136)
 
 [node name="Bolt" parent="." instance=ExtResource("9_kek77")]
 position = Vector2(-88, 1)
@@ -134,3 +134,4 @@ position = Vector2(-88, 1)
 [connection signal="start_game" from="HUD" to="." method="new_game"]
 [connection signal="heal" from="powerUp" to="." method="_on_power_up_heal"]
 [connection signal="bomb_collect" from="Bomb" to="." method="_on_bomb_bomb_collect"]
+[connection signal="Bolt_collect" from="Bolt" to="." method="_on_bolt_bolt_collect"]

@@ -1,19 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvw4k2gad6ce2"]
+[gd_scene load_steps=4 format=3 uid="uid://bvw4k2gad6ce2"]
 
 [ext_resource type="Script" uid="uid://1ep8trg2kk4f" path="res://bomb.gd" id="1_4fn8o"]
 [ext_resource type="Texture2D" uid="uid://bumyw82451iy" path="res://art/free_simple_bomb_sprite_by_raenko87_dcci5wa.png" id="2_nfxiy"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6w74q"]
-radius = 150.0
+radius = 28.0179
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_bwkwj"]
-radius = 126.491
-
-[node name="Bomb" type="RigidBody2D" groups=["Bombs"]]
-scale = Vector2(0.1, 0.1)
+[node name="Bomb" type="Area2D" groups=["Bombs"]]
 collision_layer = 8
 collision_mask = 2
-gravity_scale = 0.0
 script = ExtResource("1_4fn8o")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -22,18 +17,7 @@ texture = ExtResource("2_nfxiy")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(-5, 10)
-scale = Vector2(0.185, 0.185)
 shape = SubResource("CircleShape2D_6w74q")
-
-[node name="BombBox" type="Area2D" parent="."]
-unique_name_in_owner = true
-collision_layer = 8
-collision_mask = 2
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="BombBox"]
-position = Vector2(-6, 10)
-scale = Vector2(0.22, 0.22)
-shape = SubResource("CircleShape2D_bwkwj")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." groups=["Bombs"]]
 

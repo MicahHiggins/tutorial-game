@@ -1,4 +1,5 @@
 extends Area2D
+class_name Player
 signal hit
 
 @export var speed = 400 # How fast the player will move (pixels/sec).
@@ -65,7 +66,8 @@ func _process(delta):
 			$CollisionShape2D.set_deferred("disabled", true)
 			
 			
-
+func heal():
+	pass
 	
 func start(pos):
 	%ProgressBar.value = health
@@ -78,3 +80,11 @@ func start(pos):
 	show()
 	$CollisionShape2D.disabled = false
 	
+
+
+#func _on_power_up_heal() -> void:
+#	print(health)
+	#health += 50.0
+	
+#	%ProgressBar.value = health
+#	print(%ProgressBar.value)

@@ -54,9 +54,9 @@ func new_game():
 	
 func _process(delta):
 	$MobTimer.wait_time = 1.0/((score2/15) + 5.0)
-	$BombPowerTimer.wait_time = randfn(10.0, 6.0)
-	$ShieldPowerTimer.wait_time = randfn(10.0, 6.0)
-	$HealthPowerTimer.wait_time = randfn(10.0, 6.0)
+	$BombPowerTimer.wait_time = clamp(randfn(5.0, 3.0),0, 15)
+	$ShieldPowerTimer.wait_time = clamp(randfn(5.0, 3.0),0, 15)
+	$HealthPowerTimer.wait_time = clamp(randfn(5.0, 3.0),0, 15)
 	#print($MobTimer.wait_time)
 	if score >= (scoreCheck + 10):
 		scoreCheck=score
@@ -68,38 +68,6 @@ func _process(delta):
 		
 		print(darkColor)
 		%ColorRect.color = darkColor
-		
-	#if  $powerUp.HealBox.overlaps_area($player/HurtBox):
-	#	get_tree().call_group("power_ups", "queue_free")
-	#	print("boom")
-#	#	queue_free()
-#		heal.emit()
-	#if Scene1 == false:
-		#if score >= 5 and score < 10:
-		#func _on_bolt_timer_timeout() -> void:
-			#
-			#
-			#$MobTimer.stop()
-			#$HealthPowerTimer.stop()
-			#$ShieldPowerTimer.stop()
-			#$BombPowerTimer.stop()
-			#$FastEnemyTimer.start()
-			#var BLT = bolt_scene.instantiate()
-			#var BoltUp_spawn_location = $PowerUpPath/PowerUpSpawnLocation
-			#BoltUp_spawn_location.progress_ratio = randf()
-#
-			## Set the mob's position to the random location.
-			#BLT.position = BoltUp_spawn_location.position
-			#add_child(BLT)
-			#Scene1 = true
-	#if Scene1 == true:
-		#if score >= 10:
-			#Scene1 = false
-			#$MobTimer.start()
-			#$HealthPowerTimer.start()
-			#$ShieldPowerTimer.start()
-			#$BombPowerTimer.start()
-			#$FastEnemyTimer.stop()
 		
 #func _physics_process(delta: float) -> void:
 #	var direction = global_position.direction_to(player.global_position)
@@ -202,6 +170,7 @@ func _on_health_power_timer_timeout() -> void:
 	get_tree().call_group("power_ups", "queue_free")
 		
 	var HP = power_up_scene.instantiate()
+	HP.connect("heal", _on_power_up_heal)
 	# Choose a random location on Path2D.
 	var HealthUp_spawn_location = $PowerUpPath/PowerUpSpawnLocation
 	HealthUp_spawn_location.progress_ratio = randf()
@@ -213,6 +182,7 @@ func _on_health_power_timer_timeout() -> void:
 func _on_shield_power_timer_timeout() -> void:
 	get_tree().call_group("Shields", "queue_free")
 	var SHLD = Shield_scene.instantiate()
+	SHLD.connect("Shielded", _on_shield_shielded)
 	var ShieldUp_spawn_location = $PowerUpPath/PowerUpSpawnLocation
 	ShieldUp_spawn_location.progress_ratio = randf()
 	# Set the mob's position to the random location.
@@ -222,20 +192,30 @@ func _on_shield_power_timer_timeout() -> void:
 func _on_bomb_power_timer_timeout() -> void:
 	get_tree().call_group("Bombs", "queue_free")
 	var BMB = bomb_scene.instantiate()
+	BMB.connect("bomb_collect", _on_bomb_bomb_collect)
 	var BombUp_spawn_location = $PowerUpPath/PowerUpSpawnLocation
 	BombUp_spawn_location.progress_ratio = randf()
 	# Set the mob's position to the random location.
 	BMB.position = BombUp_spawn_location.position
 	add_child(BMB)
-
-func _on_power_up_heal() -> void:
-	%Player.health += 20.0
 	
+func _on_power_up_heal() -> void:
+	print("heal")
+	%Player.health += 50.0
+	%Player/ProgressBar.value = %Player.health
+
 func _on_shield_shielded() -> void:
-	%player.protection += 1.0
-	if %player.protection > 0:
-		%player.protection.show()
+	print("shield")
+	%Player.protection += 1.0
+	%Player/ProgressBar2.value = %Player.protection
+	#%ProgressBar2.value = %Player.protection
+	#if %Player.protection > 0:
+	#	%ProgressBar2.show()
 
 
 func _on_bomb_bomb_collect() -> void:
 	get_tree().call_group("mobs", "queue_free")
+	
+
+func _on_bolt_bolt_collect() -> void:
+	pass # Replace with function body.
