@@ -33,3 +33,15 @@ Assets:
 	
 9/17
 	FastEnemies and Bolt now despawn when starting a new game,
+	
+	
+9/22
+	Heal and Shield powerups now properly update their corresponding progress bars
+	Fixes Needed: Bolt needs to give ability to dash
+					Dash can't be spammed
+					Diagonal Dash travels same distance as orthographic movement
+					
+	Improvements Desired: Background color gets darker gradually, better descending effect
+						Particles for player movement and dash
+						Better assets for player/enemy
+						More sound effects

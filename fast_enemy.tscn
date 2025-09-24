@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://c28djv5vvfu4e"]
+[gd_scene load_steps=13 format=3 uid="uid://c28djv5vvfu4e"]
 
 [ext_resource type="Shader" uid="uid://d0hckt6p28os1" path="res://art.gdshader" id="1_pl3mp"]
 [ext_resource type="Script" uid="uid://cagsbwflwpnt4" path="res://fast_enemy.gd" id="1_ssb41"]
@@ -52,6 +52,20 @@ animations = [{
 radius = 56.8
 height = 160.0
 
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ssb41"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -10.0
+linear_accel_max = 1.75
+damping_max = 1.155
+scale_min = 5.0
+scale_max = 7.5
+color = Color(0.878431, 0.592157, 0.545098, 1)
+turbulence_enabled = true
+turbulence_noise_strength = 14.86
+turbulence_influence_min = 0.824
+turbulence_influence_max = 0.824
+
 [node name="FastEnemy" type="RigidBody2D"]
 position = Vector2(-100, -76)
 collision_layer = 4
@@ -71,3 +85,7 @@ scale = Vector2(1.25, 0.628571)
 shape = SubResource("CapsuleShape2D_ssb41")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="."]
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 16
+process_material = SubResource("ParticleProcessMaterial_ssb41")

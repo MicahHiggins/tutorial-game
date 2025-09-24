@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dn37iin1qscmq"
+path="res://.godot/imported/The Abyssal Choir.mp3-231ba7132307474f29e0f2d06c2cadb0.mp3str"
+
+[deps]
+
+source_file="res://art/The Abyssal Choir.mp3"
+dest_files=["res://.godot/imported/The Abyssal Choir.mp3-231ba7132307474f29e0f2d06c2cadb0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -15,6 +15,7 @@ var score2 = 0.0
 var scoreCheck = 0
 var BLUE = Color(0.38,0.50,0.90,1.0)
 var Scene1 = false
+var DashPower = false
 #var player =
 
 
@@ -32,12 +33,15 @@ func game_over() -> void:
 	$FastEnemyTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
+	$Music2.stop()
+	
 	$DeathSound.play()
 
 func new_game():
 	score = 0
 	score2 = 0.0
 	scoreCheck = 0
+	DashPower = false
 	%Player.health = 100.0
 	%ColorRect.color = BLUE
 	$Player.start($StartPosition.position)
@@ -50,6 +54,7 @@ func new_game():
 	get_tree().call_group("Bombs", "queue_free")
 	get_tree().call_group("Bolts", "queue_free")
 	$Music.play()
+	$DeathSound.stop()
 	#%player.protection.hide()
 	
 func _process(delta):
@@ -119,8 +124,10 @@ func _on_bolt_timer_timeout() -> void:
 	$ShieldPowerTimer.stop()
 	$BombPowerTimer.stop()
 	$Music.stop()
+	$Music2.play()
 	#$FastEnemyTimer.start()
 	var BLT = bolt_scene.instantiate()
+	BLT.connect("Bolt_collect", _on_bolt_bolt_collect)
 	var BoltUp_spawn_location = $PowerUpPath/PowerUpSpawnLocation
 	BoltUp_spawn_location.progress_ratio = randf()
 
@@ -164,6 +171,7 @@ func _on_scene_1_end_timer_timeout() -> void:
 	$ShieldPowerTimer.start()
 	$BombPowerTimer.start()
 	$Music.play()
+	$Music2.stop()
 
 
 func _on_health_power_timer_timeout() -> void:
@@ -201,7 +209,10 @@ func _on_bomb_power_timer_timeout() -> void:
 	
 func _on_power_up_heal() -> void:
 	print("heal")
-	%Player.health += 50.0
+	if %Player.health < 50.0:
+		%Player.health += 50.0
+	else:
+		%Player.health = 100.0
 	%Player/ProgressBar.value = %Player.health
 
 func _on_shield_shielded() -> void:
@@ -218,4 +229,5 @@ func _on_bomb_bomb_collect() -> void:
 	
 
 func _on_bolt_bolt_collect() -> void:
-	pass # Replace with function body.
+	DashPower = true
+	print(DashPower)
