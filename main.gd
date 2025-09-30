@@ -16,6 +16,7 @@ var scoreCheck = 0
 var BLUE = Color(0.38,0.50,0.90,1.0)
 var Scene1 = false
 var DashPower = false
+var moving = false
 #var player =
 
 
@@ -25,6 +26,7 @@ func _ready():
 
 
 func game_over() -> void:
+	moving = false
 	$ScoreTimer.stop()
 	$MobTimer.stop()
 	$HealthPowerTimer.stop()
@@ -46,6 +48,7 @@ func new_game():
 	scoreCheck = 0
 	DashPower = false
 	%Player.health = 100.0
+	%World/Path2D/PathFollow2D.progress_ratio = 0.0
 	%ColorRect.color = BLUE
 	$Player.start($StartPosition.position)
 	$StartTimer.start()
@@ -77,7 +80,10 @@ func _process(delta):
 		#environment.environment.adjustment_brightness -= 0.1
 		print(darkColor)
 		%ColorRect.color = darkColor
-		
+	
+	#if moving == true:
+	#	var moveDown = Vector2(0,10)
+	#	%MobPath.position += 
 #func _physics_process(delta: float) -> void:
 #	var direction = global_position.direction_to(player.global_position)
 		
@@ -86,7 +92,7 @@ func _on_mob_timer_timeout() -> void:
 	var mob = mob_scene.instantiate()
 
 	# Choose a random location on Path2D.
-	var mob_spawn_location = $MobPath/MobSpawnLocation
+	var mob_spawn_location = %World/Path2D/PathFollow2D/MobPath/MobSpawnLocation
 	mob_spawn_location.progress_ratio = randf()
 
 	# Set the mob's position to the random location.
@@ -121,6 +127,7 @@ func _on_start_timer_timeout() -> void:
 	$BombPowerTimer.start()
 	$BoltTimer.start()
 	$Scene1Timer.start()
+	moving = true
 
 func _on_bolt_timer_timeout() -> void:
 	$MobTimer.stop()
@@ -132,7 +139,7 @@ func _on_bolt_timer_timeout() -> void:
 	#$FastEnemyTimer.start()
 	var BLT = bolt_scene.instantiate()
 	BLT.connect("Bolt_collect", _on_bolt_bolt_collect)
-	var BoltUp_spawn_location = $PowerUpPath/PowerUpSpawnLocation
+	var BoltUp_spawn_location = %World/Path2D/PathFollow2D/PowerUpPath/PowerUpSpawnLocation
 	BoltUp_spawn_location.progress_ratio = randf()
 
 			# Set the mob's position to the random location.
@@ -146,7 +153,7 @@ func _on_scene_1_timer_timeout() -> void:
 func _on_fast_enemy_timer_timeout() -> void:
 	var enemy = enemy_scene.instantiate()
 	# Choose a random location on Path2D.
-	var enemy_spawn_location = $MobPath/MobSpawnLocation
+	var enemy_spawn_location = %World/Path2D/PathFollow2D/MobPath/MobSpawnLocation
 	enemy_spawn_location.progress_ratio = randf()
 
 	# Set the mob's position to the random location.
@@ -184,7 +191,7 @@ func _on_health_power_timer_timeout() -> void:
 	var HP = power_up_scene.instantiate()
 	HP.connect("heal", _on_power_up_heal)
 	# Choose a random location on Path2D.
-	var HealthUp_spawn_location = $PowerUpPath/PowerUpSpawnLocation
+	var HealthUp_spawn_location = %World/Path2D/PathFollow2D/PowerUpPath/PowerUpSpawnLocation
 	HealthUp_spawn_location.progress_ratio = randf()
 
 	# Set the mob's position to the random location.
@@ -195,7 +202,7 @@ func _on_shield_power_timer_timeout() -> void:
 	get_tree().call_group("Shields", "queue_free")
 	var SHLD = Shield_scene.instantiate()
 	SHLD.connect("Shielded", _on_shield_shielded)
-	var ShieldUp_spawn_location = $PowerUpPath/PowerUpSpawnLocation
+	var ShieldUp_spawn_location = %World/Path2D/PathFollow2D/PowerUpPath/PowerUpSpawnLocation
 	ShieldUp_spawn_location.progress_ratio = randf()
 	# Set the mob's position to the random location.
 	SHLD.position = ShieldUp_spawn_location.position
@@ -205,7 +212,7 @@ func _on_bomb_power_timer_timeout() -> void:
 	get_tree().call_group("Bombs", "queue_free")
 	var BMB = bomb_scene.instantiate()
 	BMB.connect("bomb_collect", _on_bomb_bomb_collect)
-	var BombUp_spawn_location = $PowerUpPath/PowerUpSpawnLocation
+	var BombUp_spawn_location = %World/Path2D/PathFollow2D/PowerUpPath/PowerUpSpawnLocation
 	BombUp_spawn_location.progress_ratio = randf()
 	# Set the mob's position to the random location.
 	BMB.position = BombUp_spawn_location.position

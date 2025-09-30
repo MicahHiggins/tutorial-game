@@ -9,6 +9,7 @@ Assets:
 	Heart - https://xxashuraxx.itch.io/heart
 	Bolt - https://pngimg.com/image/28062
 	Used for Music Creation - https://suno.com/create?wid=default
+	Background Water - https://ninjikin.itch.io/water
 	
 9/8-9/9
 	Tutorial took me roughly 3-4 hours to complete
@@ -54,4 +55,18 @@ Assets:
 	Added custom music
 	These 4 additions/fixes took roughly 3.5 to 4 hours
 	Total time spent this week: ~5.5 hours
+	
+9/29
+	Followed the tilemap tutorial and used a water background
+	Not sure I will keep the animations	
+	Took between 2 to 2.5 hours
+
+9/30
+	Session 1 ~2 hours
+		Added camera that moves down
+		Adjusted Lighting
+		Changed font color
+		Trying to get mob path and power up paths to move down with the camera but it's not working
+		
+	
 	
