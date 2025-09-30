@@ -8,6 +8,7 @@ Assets:
 	Bomb - https://www.deviantart.com/raenko87/art/FREE-Simple-Bomb-Sprite-746596954
 	Heart - https://xxashuraxx.itch.io/heart
 	Bolt - https://pngimg.com/image/28062
+	Used for Music Creation - https://suno.com/create?wid=default
 	
 9/8-9/9
 	Tutorial took me roughly 3-4 hours to complete
@@ -32,11 +33,11 @@ Assets:
 	Added Bomb powerup, dash skill and fast enemies once you reach a certain point. Powerup collisions still aren't working and I have no idea why. Took probably 4 more hours. Around 8 hours total today, mostly due to trying to figure out why collisions aren't working
 	
 9/17
-	FastEnemies and Bolt now despawn when starting a new game,
+	FastEnemies and Bolt now despawn when starting a new game, took 40 minutes or so
 	
 	
 9/22
-	Heal and Shield powerups now properly update their corresponding progress bars
+	Heal and Shield powerups now properly update their corresponding progress bars, took roughly an hour
 	Fixes Needed: Bolt needs to give ability to dash
 					Dash can't be spammed
 					Diagonal Dash travels same distance as orthographic movement
@@ -45,3 +46,12 @@ Assets:
 						Particles for player movement and dash
 						Better assets for player/enemy
 						More sound effects
+					
+9/23
+	You can't dash without picking up the lightning bolt now, diagnol dashing doesn't give a boost (still broken though, dashing down/left doesn't work for some reason)
+	Added a light to the player (Needs improvement, want it to be more apparent as the background gets darker but it's the opposite right now)
+	Added simple particles to the player and the fast enemies
+	Added custom music
+	These 4 additions/fixes took roughly 3.5 to 4 hours
+	Total time spent this week: ~5.5 hours
+	

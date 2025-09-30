@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://cr5rijkoa4wvx"]
+[gd_scene load_steps=12 format=3 uid="uid://cr5rijkoa4wvx"]
 
 [ext_resource type="Script" uid="uid://cx8oku8kj6ati" path="res://mob.gd" id="1_1qmh0"]
 [ext_resource type="Texture2D" uid="uid://m5vacxqedsei" path="res://art/enemyFlyingAlt_1.png" id="1_b3mxk"]
@@ -48,6 +48,15 @@ animations = [{
 radius = 39.0
 height = 104.0
 
+[sub_resource type="Gradient" id="Gradient_1qmh0"]
+offsets = PackedFloat32Array(0, 0.326797, 0.555556)
+colors = PackedColorArray(1, 0.443137, 0.462745, 1, 0.937716, 0.70519, 0.715571, 0.529412, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_gfurk"]
+gradient = SubResource("Gradient_1qmh0")
+fill = 1
+fill_from = Vector2(0.520737, 0.483871)
+
 [node name="Mob" type="RigidBody2D" groups=["mobs"]]
 collision_layer = 4
 collision_mask = 0
@@ -65,5 +74,11 @@ rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gfurk")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." groups=["mobs"]]
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+position = Vector2(19, 1.52588e-05)
+scale = Vector2(6.5625, 6.5625)
+color = Color(1, 0.215686, 0.227451, 0.309804)
+texture = SubResource("GradientTexture2D_gfurk")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

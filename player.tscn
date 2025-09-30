@@ -9,8 +9,8 @@
 
 [sub_resource type="Gradient" id="Gradient_2hs0m"]
 interpolation_mode = 2
-offsets = PackedFloat32Array(0, 0.522876, 1)
-colors = PackedColorArray(1, 1, 1, 1, 0.143791, 0.143791, 0.143791, 0.143791, 0, 0, 0, 0)
+offsets = PackedFloat32Array(0, 0.156863, 0.490196, 1)
+colors = PackedColorArray(0.780392, 0.780392, 0.780392, 1, 1, 1, 1, 1, 0.145098, 0.145098, 0.145098, 1, 0, 0, 0, 1)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_1jxqw"]
 gradient = SubResource("Gradient_2hs0m")
@@ -94,7 +94,8 @@ script = ExtResource("1_sweqy")
 metadata/_edit_group_ = true
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-scale = Vector2(5.25, 5.25)
+scale = Vector2(30, 30)
+energy = 0.2
 texture = SubResource("GradientTexture2D_1jxqw")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]

@@ -1,4 +1,4 @@
-[gd_scene load_steps=18 format=3 uid="uid://dh87mnej1niyg"]
+[gd_scene load_steps=21 format=3 uid="uid://dh87mnej1niyg"]
 
 [ext_resource type="Script" uid="uid://cfaq8jxty0xbd" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://3qeya4te7ai8" path="res://player.tscn" id="1_ig7tw"]
@@ -12,6 +12,7 @@
 [ext_resource type="PackedScene" uid="uid://bvw4k2gad6ce2" path="res://bomb.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://uhbjjb2cphua" path="res://bolt.tscn" id="9_kek77"]
 [ext_resource type="PackedScene" uid="uid://c28djv5vvfu4e" path="res://fast_enemy.tscn" id="10_4c57u"]
+[ext_resource type="PackedScene" uid="uid://dt1m2casodojx" path="res://level_1.tscn" id="13_ycdy4"]
 
 [sub_resource type="Gradient" id="Gradient_4c57u"]
 
@@ -23,7 +24,6 @@ background_mode = 3
 background_color = Color(0.28652, 0.145565, 0.154159, 1)
 background_energy_multiplier = 3.0
 adjustment_enabled = true
-adjustment_brightness = 1.07
 adjustment_contrast = 0.92
 adjustment_color_correction = SubResource("GradientTexture2D_efxa6")
 
@@ -39,22 +39,33 @@ _data = {
 }
 point_count = 8
 
+[sub_resource type="Gradient" id="Gradient_dg77c"]
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_ycdy4"]
+gradient = SubResource("Gradient_dg77c")
+fill_from = Vector2(0.493088, 0)
+fill_to = Vector2(0.497696, 1)
+
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
 mob_scene = ExtResource("2_1bvp3")
 
+[node name="Level1" parent="." instance=ExtResource("13_ycdy4")]
+
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+unique_name_in_owner = true
 environment = SubResource("Environment_4c57u")
 
-[node name="ColorRect" type="ColorRect" parent="."]
+[node name="ColorRect" type="ColorRect" parent="WorldEnvironment"]
 unique_name_in_owner = true
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = -40.0
-offset_top = -24.0
-offset_right = 424.0
-offset_bottom = 80.0
+offset_left = -3176.0
+offset_top = -464.0
+offset_right = -2712.0
+offset_bottom = -360.0
 grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.38861, 0.494457, 0.881218, 1)
@@ -134,6 +145,12 @@ position = Vector2(24, -136)
 position = Vector2(-88, 1)
 
 [node name="FastEnemy" parent="." instance=ExtResource("10_4c57u")]
+
+[node name="Sunlight" type="PointLight2D" parent="."]
+position = Vector2(-1368, 4920)
+scale = Vector2(87.25, 104.5)
+energy = 7.54
+texture = SubResource("GradientTexture2D_ycdy4")
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

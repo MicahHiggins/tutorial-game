@@ -1,13 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://c28djv5vvfu4e"]
+[gd_scene load_steps=15 format=3 uid="uid://c28djv5vvfu4e"]
 
 [ext_resource type="Shader" uid="uid://d0hckt6p28os1" path="res://art.gdshader" id="1_pl3mp"]
 [ext_resource type="Script" uid="uid://cagsbwflwpnt4" path="res://fast_enemy.gd" id="1_ssb41"]
-[ext_resource type="Texture2D" uid="uid://m5vacxqedsei" path="res://art/enemyFlyingAlt_1.png" id="2_ssb41"]
-[ext_resource type="Texture2D" uid="uid://xg5imawyped3" path="res://art/enemyFlyingAlt_2.png" id="3_jxgau"]
-[ext_resource type="Texture2D" uid="uid://dhf1o5sk6u2q3" path="res://art/enemySwimming_1.png" id="4_c3ngx"]
-[ext_resource type="Texture2D" uid="uid://l06rcqc3x8g3" path="res://art/enemySwimming_2.png" id="5_cc2xe"]
-[ext_resource type="Texture2D" uid="uid://bluybnruu44jx" path="res://art/enemyWalking_1.png" id="6_f70xl"]
-[ext_resource type="Texture2D" uid="uid://1hq4opkghq8w" path="res://art/enemyWalking_2.png" id="7_qg4rh"]
+[ext_resource type="Texture2D" uid="uid://dsbkjph4566x2" path="res://art/Shark1.png" id="3_c3ngx"]
+[ext_resource type="Texture2D" uid="uid://ddtla46oonj3g" path="res://art/Shark2.png" id="4_cc2xe"]
+[ext_resource type="Texture2D" uid="uid://60pq7m1rm4wi" path="res://art/Shark3.png" id="5_f70xl"]
+[ext_resource type="Texture2D" uid="uid://bw0042y3u0444" path="res://art/Shark4.png" id="6_qg4rh"]
+[ext_resource type="Texture2D" uid="uid://dp0uq7jokklg1" path="res://art/Shark5.png" id="7_rr1co"]
+[ext_resource type="Texture2D" uid="uid://by4k701geumws" path="res://art/Shark7.png" id="8_68rlf"]
+[ext_resource type="Texture2D" uid="uid://bdfn78bdpbcy2" path="res://art/Shark6.png" id="9_rrvv5"]
+[ext_resource type="Texture2D" uid="uid://b4vfpixhb5xgl" path="res://art/Shark8.png" id="10_ve8vq"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_rr1co"]
 shader = ExtResource("1_pl3mp")
@@ -16,10 +18,28 @@ shader = ExtResource("1_pl3mp")
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_ssb41")
+"texture": ExtResource("3_c3ngx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_jxgau")
+"texture": ExtResource("4_cc2xe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f70xl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qg4rh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rr1co")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_68rlf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rrvv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ve8vq")
 }],
 "loop": true,
 "name": &"fly",
@@ -27,10 +47,28 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("4_c3ngx")
+"texture": ExtResource("3_c3ngx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_cc2xe")
+"texture": ExtResource("4_cc2xe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f70xl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qg4rh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rr1co")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_68rlf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rrvv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ve8vq")
 }],
 "loop": true,
 "name": &"swim",
@@ -38,14 +76,32 @@ animations = [{
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("6_f70xl")
+"texture": ExtResource("3_c3ngx")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_qg4rh")
+"texture": ExtResource("4_cc2xe")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_f70xl")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qg4rh")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_rr1co")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_68rlf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_rrvv5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_ve8vq")
 }],
 "loop": true,
 "name": &"walk",
-"speed": 5.0
+"speed": 12.0
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_ssb41"]
@@ -74,11 +130,11 @@ gravity_scale = 0.0
 script = ExtResource("1_ssb41")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
-modulate = Color(0.184314, 0.364706, 1, 1)
-self_modulate = Color(0.341176, 0.407843, 1, 1)
 material = SubResource("ShaderMaterial_rr1co")
+rotation = 3.14159
+scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_68rlf")
-animation = &"fly"
+animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.25, 0.628571)

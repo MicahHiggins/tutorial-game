@@ -7,7 +7,7 @@ extends Node
 @export var bolt_scene: PackedScene  = preload("res://bolt.tscn")
 @export var enemy_scene: PackedScene  = preload("res://fast_enemy.tscn")
 @onready var player = get_node("root/Game/Player")
-
+@onready var environment : WorldEnvironment = %WorldEnvironment
 
 #@onready var player_node= get_node("player")
 var score =0
@@ -30,7 +30,10 @@ func game_over() -> void:
 	$HealthPowerTimer.stop()
 	$ShieldPowerTimer.stop()
 	$BombPowerTimer.stop()
+	$BoltTimer.stop()
 	$FastEnemyTimer.stop()
+	$Scene1Timer.stop()
+	$Scene1EndTimer.stop()
 	$HUD.show_game_over()
 	$Music.stop()
 	$Music2.stop()
@@ -67,10 +70,11 @@ func _process(delta):
 		scoreCheck=score
 		var darkColor = %ColorRect.color #Color(0.1,0.1,0.1,0.1)
 		
-		darkColor.r -= 0.04
-		darkColor.g -= 0.055
-		darkColor.b -= 0.1
+		#darkColor.r -= 0.04
+		#darkColor.g -= 0.055
+		#darkColor.b -= 0.1
 		
+		#environment.environment.adjustment_brightness -= 0.1
 		print(darkColor)
 		%ColorRect.color = darkColor
 		
