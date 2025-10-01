@@ -134,7 +134,8 @@ material = SubResource("ShaderMaterial_rr1co")
 rotation = 3.14159
 scale = Vector2(5, 5)
 sprite_frames = SubResource("SpriteFrames_68rlf")
-animation = &"walk"
+animation = &"fly"
+flip_v = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 scale = Vector2(1.25, 0.628571)

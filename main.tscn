@@ -1,4 +1,4 @@
-[gd_scene load_steps=19 format=3 uid="uid://dh87mnej1niyg"]
+[gd_scene load_steps=20 format=3 uid="uid://dh87mnej1niyg"]
 
 [ext_resource type="Script" uid="uid://cfaq8jxty0xbd" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://3qeya4te7ai8" path="res://player.tscn" id="1_ig7tw"]
@@ -24,7 +24,7 @@ background_mode = 3
 background_color = Color(0.28652, 0.145565, 0.154159, 1)
 background_energy_multiplier = 3.0
 adjustment_enabled = true
-adjustment_brightness = 0.95
+adjustment_brightness = 0.92
 adjustment_contrast = 0.92
 adjustment_color_correction = SubResource("GradientTexture2D_efxa6")
 
@@ -35,6 +35,12 @@ colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
 gradient = SubResource("Gradient_dg77c")
 fill_from = Vector2(0.493088, 0)
 fill_to = Vector2(0.497696, 1)
+
+[sub_resource type="Curve2D" id="Curve2D_ycdy4"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 908, -563, 0, 0, 0, 0, 2028, -559, 0, 0, 0, 0, 2036, 289, 0, 0, 0, 0, 876, 273)
+}
+point_count = 4
 
 [node name="Main" type="Node"]
 script = ExtResource("1_h2yge")
@@ -128,6 +134,15 @@ position = Vector2(-88, 1)
 position = Vector2(968, 1032)
 scale = Vector2(87.25, 104.5)
 texture = SubResource("GradientTexture2D_ycdy4")
+
+[node name="MobPath" type="Path2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(-820, -97)
+curve = SubResource("Curve2D_ycdy4")
+
+[node name="MobSpawnLocation" type="PathFollow2D" parent="MobPath"]
+position = Vector2(908, -563)
+rotation = 0.00357141
 
 [connection signal="hit" from="Player" to="." method="game_over"]
 [connection signal="timeout" from="MobTimer" to="." method="_on_mob_timer_timeout"]

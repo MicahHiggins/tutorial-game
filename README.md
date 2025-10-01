@@ -10,6 +10,8 @@ Assets:
 	Bolt - https://pngimg.com/image/28062
 	Used for Music Creation - https://suno.com/create?wid=default
 	Background Water - https://ninjikin.itch.io/water
+	Fish - https://pixelgnome.itch.io/fish/download/eyJleHBpcmVzIjoxNzU5Mjg4MzU2LCJpZCI6MzM0MDE1Nn0%3d.2eGl3ykzsCamsCfUCiaZ9KYS6Y0%3d
+	Shark - https://sergeant-slash.itch.io/32x32-animated-shark-sprite
 	
 9/8-9/9
 	Tutorial took me roughly 3-4 hours to complete
@@ -57,9 +59,10 @@ Assets:
 	Total time spent this week: ~5.5 hours
 	
 9/29
+	Added Shark sprite for fast enemy
 	Followed the tilemap tutorial and used a water background
 	Not sure I will keep the animations	
-	Took between 2 to 2.5 hours
+	Took ~2.5 hours
 
 9/30
 	Session 1 ~2 hours
@@ -67,6 +70,12 @@ Assets:
 		Adjusted Lighting
 		Changed font color
 		Trying to get mob path and power up paths to move down with the camera but it's not working
+		
+	Session 2 ~1.75 hours
+		Replaced tutorial enemies with fish
+		Adjusted mob spawing so that it looks like the fish are swimming away from sharks
+		Mobs spawn location is based on player location instead of path since I couldn't move the path with the camera
+		Lengthened background art
 		
 	
 	
