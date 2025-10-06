@@ -24,7 +24,7 @@ background_mode = 3
 background_color = Color(0.28652, 0.145565, 0.154159, 1)
 background_energy_multiplier = 3.0
 adjustment_enabled = true
-adjustment_brightness = 0.92
+adjustment_brightness = 0.85
 adjustment_contrast = 0.92
 adjustment_color_correction = SubResource("GradientTexture2D_efxa6")
 
@@ -131,8 +131,9 @@ position = Vector2(-88, 1)
 [node name="FastEnemy" parent="." instance=ExtResource("10_4c57u")]
 
 [node name="Sunlight" type="PointLight2D" parent="."]
-position = Vector2(968, 1032)
-scale = Vector2(87.25, 104.5)
+position = Vector2(968, 3184)
+scale = Vector2(87.25, 171.75)
+energy = 1.5
 texture = SubResource("GradientTexture2D_ycdy4")
 
 [node name="MobPath" type="Path2D" parent="."]

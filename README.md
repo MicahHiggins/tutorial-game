@@ -12,6 +12,7 @@ Assets:
 	Background Water - https://ninjikin.itch.io/water
 	Fish - https://pixelgnome.itch.io/fish/download/eyJleHBpcmVzIjoxNzU5Mjg4MzU2LCJpZCI6MzM0MDE1Nn0%3d.2eGl3ykzsCamsCfUCiaZ9KYS6Y0%3d
 	Shark - https://sergeant-slash.itch.io/32x32-animated-shark-sprite
+	More Underwater Enemies - https://free-game-assets.itch.io/free-underwater-enemies-pixel-art-character-pack
 	
 9/8-9/9
 	Tutorial took me roughly 3-4 hours to complete

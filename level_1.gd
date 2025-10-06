@@ -4,3 +4,5 @@ extends Node2D
 
 func _process(delta):
 	pathfollow.progress_ratio += 0.00005
+	
+	

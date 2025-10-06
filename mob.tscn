@@ -42,8 +42,8 @@ animations = [{
 }]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_gfurk"]
-radius = 32.0
-height = 90.0
+radius = 20.0
+height = 52.0
 
 [sub_resource type="Gradient" id="Gradient_1qmh0"]
 offsets = PackedFloat32Array(0, 0.326797, 0.555556)
@@ -62,20 +62,22 @@ script = ExtResource("1_1qmh0")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
 position = Vector2(5.1166, 0)
-scale = Vector2(5, 5)
+scale = Vector2(3, 3)
 sprite_frames = SubResource("SpriteFrames_pcqmr")
 animation = &"walk"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(5, 2)
 rotation = 1.5708
 shape = SubResource("CapsuleShape2D_gfurk")
 
 [node name="VisibleOnScreenNotifier2D" type="VisibleOnScreenNotifier2D" parent="." groups=["mobs"]]
 
 [node name="PointLight2D" type="PointLight2D" parent="."]
-position = Vector2(19, 1.52588e-05)
+position = Vector2(8.00003, 1.00003)
 scale = Vector2(6.5625, 6.5625)
 color = Color(1, 0.215686, 0.227451, 0.309804)
+energy = 0.9
 texture = SubResource("GradientTexture2D_gfurk")
 
 [connection signal="screen_exited" from="VisibleOnScreenNotifier2D" to="." method="_on_visible_on_screen_notifier_2d_screen_exited"]

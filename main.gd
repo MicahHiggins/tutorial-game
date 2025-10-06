@@ -98,7 +98,7 @@ func _on_mob_timer_timeout() -> void:
 	# Set the mob's position to the random location.
 	#mob.position = mob_spawn_location.position
 	
-	var POS = Vector2(randf_range(-200,-100), %Player.position.y + randf_range(-500,500))
+	var POS = Vector2(randf_range(-200,-100), %Player.position.y + randf_range(-550,550))
 	mob.position = POS
 
 	# Set the mob's direction perpendicular to the path direction.
@@ -106,8 +106,8 @@ func _on_mob_timer_timeout() -> void:
 
 
 	# Add some randomness to the direction.
-	direction += randf_range(-PI/4, PI/4)
-	print(direction)
+	direction += randf_range(-PI/5, PI/5)
+	
 	#direction = abs(direction)
 	
 	mob.rotation = direction
@@ -175,7 +175,7 @@ func _on_fast_enemy_timer_timeout() -> void:
 	# Add some randomness to the direction.
 	#direction += randf_range(-PI / 4, PI / 4)
 	var direction = 0#enemy_spawn_location.rotation + PI / 2
-	direction += randf_range(-PI/6, PI/6)
+	direction += randf_range(-PI/7, PI/7)
 	enemy.rotation = direction
 
 	# Choose the velocity for the mob.
