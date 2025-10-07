@@ -4,7 +4,7 @@ func _on_visible_on_screen_notifier_2d_screen_exited() -> void:
 	queue_free() # Replace with function body.
 
 
-func _process(delta):
+func _process(_delta):
 	var overlapping_player = get_overlapping_areas()
 	#print(overlapping_player.size())
 	if overlapping_player.size() > 0:

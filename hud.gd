@@ -3,6 +3,7 @@ extends CanvasLayer
 # Notifies `Main` node that the button has been pressed
 signal start_game
 
+
 func show_message(text):
 	$Message.text = text
 	$Message.show()
@@ -24,7 +25,12 @@ func update_score(score):
 
 func _on_start_button_pressed() -> void:
 	$StartButton.hide()
+	$SettingsButton.hide()
+	$QuitButton.hide()
 	start_game.emit()
 
 func _on_message_timer_timeout() -> void:
 	$Message.hide()
+
+func _on_quit_button_pressed() -> void:
+	get_tree().quit()

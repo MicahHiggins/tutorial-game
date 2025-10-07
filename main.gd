@@ -65,9 +65,9 @@ func new_game():
 	
 func _process(delta):
 	$MobTimer.wait_time = 1.0/((score2/15) + 5.0)
-	$BombPowerTimer.wait_time = clamp(randfn(5.0, 3.0),0, 15)
-	$ShieldPowerTimer.wait_time = clamp(randfn(5.0, 3.0),0, 15)
-	$HealthPowerTimer.wait_time = clamp(randfn(5.0, 3.0),0, 15)
+	$BombPowerTimer.wait_time = clamp(randfn(5.0, 3.0),0.1, 15)
+	$ShieldPowerTimer.wait_time = clamp(randfn(5.0, 3.0),0.1, 15)
+	$HealthPowerTimer.wait_time = clamp(randfn(5.0, 3.0),0.1, 15)
 	#print($MobTimer.wait_time)
 	if score >= (scoreCheck + 10):
 		scoreCheck=score
@@ -231,6 +231,7 @@ func _on_bomb_power_timer_timeout() -> void:
 	
 func _on_power_up_heal() -> void:
 	print("heal")
+	$HealthUpSFX.play()
 	if %Player.health < 50.0:
 		%Player.health += 50.0
 	else:
@@ -239,6 +240,7 @@ func _on_power_up_heal() -> void:
 
 func _on_shield_shielded() -> void:
 	print("shield")
+	$ShieldUpSFX.play()
 	%Player.protection += 1.0
 	%Player/ProgressBar2.value = %Player.protection
 	#%ProgressBar2.value = %Player.protection
@@ -248,6 +250,7 @@ func _on_shield_shielded() -> void:
 
 func _on_bomb_bomb_collect() -> void:
 	get_tree().call_group("mobs", "queue_free")
+	$BombSFX.play()
 	
 
 func _on_bolt_bolt_collect() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://dh87mnej1niyg"]
+[gd_scene load_steps=23 format=3 uid="uid://dh87mnej1niyg"]
 
 [ext_resource type="Script" uid="uid://cfaq8jxty0xbd" path="res://main.gd" id="1_h2yge"]
 [ext_resource type="PackedScene" uid="uid://3qeya4te7ai8" path="res://player.tscn" id="1_ig7tw"]
@@ -9,9 +9,12 @@
 [ext_resource type="AudioStream" uid="uid://1msx8j5h0qgq" path="res://art/Nihil.mp3" id="6_dg77c"]
 [ext_resource type="PackedScene" uid="uid://bx1g0gqfkew4b" path="res://Shield.tscn" id="7_272bh"]
 [ext_resource type="AudioStream" uid="uid://xyrdlo20meix" path="res://art/The Abyssal Choir (1).mp3" id="7_dg77c"]
+[ext_resource type="AudioStream" uid="uid://b6477uejse57b" path="res://art/220173__gameaudio__spacey-1uppower-up.wav" id="8_2cqfq"]
 [ext_resource type="PackedScene" uid="uid://bvw4k2gad6ce2" path="res://bomb.tscn" id="8_5vw27"]
 [ext_resource type="PackedScene" uid="uid://uhbjjb2cphua" path="res://bolt.tscn" id="9_kek77"]
+[ext_resource type="AudioStream" uid="uid://dfqbq616gv1wq" path="res://art/478342__joao_janz__bouncing-power-up-1_5.wav" id="9_yaehf"]
 [ext_resource type="PackedScene" uid="uid://c28djv5vvfu4e" path="res://fast_enemy.tscn" id="10_4c57u"]
+[ext_resource type="AudioStream" uid="uid://bdq7vio7qt0fo" path="res://art/452998__breviceps__blip-wave.wav" id="10_074og"]
 [ext_resource type="PackedScene" uid="uid://bo8ll0ogdrtkj" path="res://World.tscn" id="13_ycdy4"]
 
 [sub_resource type="Gradient" id="Gradient_4c57u"]
@@ -92,7 +95,7 @@ wait_time = 25.0
 one_shot = true
 
 [node name="Scene1Timer" type="Timer" parent="."]
-wait_time = 30.0
+wait_time = 0.3
 one_shot = true
 
 [node name="FastEnemyTimer" type="Timer" parent="."]
@@ -109,12 +112,28 @@ position = Vector2(950, 600)
 
 [node name="Music" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("5_efxa6")
+bus = &"Music"
 
 [node name="Music2" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("6_dg77c")
+bus = &"Music"
+
+[node name="HealthUpSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("8_2cqfq")
+bus = &"SFX"
+
+[node name="ShieldUpSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("9_yaehf")
+bus = &"SFX"
+
+[node name="BombSFX" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("10_074og")
+volume_db = -7.885
+bus = &"SFX"
 
 [node name="DeathSound" type="AudioStreamPlayer2D" parent="."]
 stream = ExtResource("7_dg77c")
+bus = &"Music"
 
 [node name="powerUp" parent="." instance=ExtResource("6_7mycd")]
 position = Vector2(-264, 48)
