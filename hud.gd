@@ -27,6 +27,7 @@ func _on_start_button_pressed() -> void:
 	$StartButton.hide()
 	$SettingsButton.hide()
 	$QuitButton.hide()
+	$ControlsButton.hide()
 	start_game.emit()
 
 func _on_message_timer_timeout() -> void:

@@ -97,3 +97,8 @@ Assets:
 	Added audio channels
 	Added a volume settings menu
 	~3.5 hours
+	
+10/7
+	Added Control Mapping Menu
+	Powerups now spawn based on player location
+	~2.5 hours

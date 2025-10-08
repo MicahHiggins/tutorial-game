@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0tbhf41ygshg"]
+[gd_scene load_steps=8 format=3 uid="uid://d0tbhf41ygshg"]
 
 [ext_resource type="FontFile" uid="uid://caowy3vapkh0n" path="res://fonts/Xolonium-Regular.ttf" id="1_37p78"]
 [ext_resource type="Script" uid="uid://bm76ulx7063p4" path="res://hud.gd" id="1_64ctp"]
 [ext_resource type="PackedScene" uid="uid://dgfqfyahcvgxl" path="res://pause_menu.tscn" id="3_8sq4i"]
 [ext_resource type="PackedScene" uid="uid://cehpuo1nqm551" path="res://sound_settings.tscn" id="4_640wx"]
+[ext_resource type="PackedScene" uid="uid://befpp05vjbx0h" path="res://control_settings.tscn" id="5_a2258"]
 
 [sub_resource type="InputEventAction" id="InputEventAction_64ctp"]
 action = &"start_game"
@@ -56,10 +57,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.0
-offset_top = 132.0
-offset_right = 100.0
-offset_bottom = 232.0
+offset_left = -107.5
+offset_top = 12.0
+offset_right = 92.5
+offset_bottom = 112.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 8
@@ -75,16 +76,34 @@ anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-offset_left = -280.5
-offset_top = -288.0
-offset_right = 280.5
-offset_bottom = -184.0
+offset_left = -288.0
+offset_top = -408.0
+offset_right = 273.0
+offset_bottom = -304.0
 grow_horizontal = 2
 grow_vertical = 0
 size_flags_horizontal = 8
 theme_override_fonts/font = ExtResource("1_37p78")
 theme_override_font_sizes/font_size = 64
 text = "Volume Settings"
+
+[node name="ControlsButton" type="Button" parent="."]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -136.0
+offset_top = 252.0
+offset_right = 136.0
+offset_bottom = 333.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 8
+theme_override_fonts/font = ExtResource("1_37p78")
+theme_override_font_sizes/font_size = 64
+text = "Control Settings
+"
 
 [node name="QuitButton" type="Button" parent="."]
 anchors_preset = 8
@@ -93,9 +112,9 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -84.0
-offset_top = 380.0
+offset_top = 356.0
 offset_right = 84.0
-offset_bottom = 484.0
+offset_bottom = 460.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 8
@@ -111,9 +130,13 @@ one_shot = true
 
 [node name="Sound_Settings" parent="." instance=ExtResource("4_640wx")]
 
+[node name="Control" parent="." instance=ExtResource("5_a2258")]
+visible = false
+
 [connection signal="pressed" from="StartButton" to="." method="_on_start_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="." method="_on_settings_button_pressed"]
 [connection signal="pressed" from="SettingsButton" to="Sound_Settings" method="_on_settings_button_pressed"]
+[connection signal="pressed" from="ControlsButton" to="Control" method="_on_controls_button_pressed"]
 [connection signal="pressed" from="QuitButton" to="." method="_on_quit_button_pressed"]
 [connection signal="timeout" from="MessageTimer" to="." method="_on_message_timer_timeout"]
 [connection signal="settings_pressed" from="PauseMenu" to="Sound_Settings" method="_on_pause_menu_settings_pressed"]

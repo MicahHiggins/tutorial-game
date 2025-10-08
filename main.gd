@@ -8,6 +8,7 @@ extends Node
 @export var enemy_scene: PackedScene  = preload("res://fast_enemy.tscn")
 @onready var player = get_node("root/Game/Player")
 @onready var environment : WorldEnvironment = %WorldEnvironment
+@onready var pause_menu = $HUD/Control
 
 #@onready var player_node= get_node("player")
 var score =0
@@ -148,11 +149,13 @@ func _on_bolt_timer_timeout() -> void:
 	#$FastEnemyTimer.start()
 	var BLT = bolt_scene.instantiate()
 	BLT.connect("Bolt_collect", _on_bolt_bolt_collect)
-	var BoltUp_spawn_location = %World/Path2D/PathFollow2D/PowerUpPath/PowerUpSpawnLocation
-	BoltUp_spawn_location.progress_ratio = randf()
+	#var BoltUp_spawn_location = %World/Path2D/PathFollow2D/PowerUpPath/PowerUpSpawnLocation
+	#BoltUp_spawn_location.progress_ratio = randf()
 
 			# Set the mob's position to the random location.
-	BLT.position = BoltUp_spawn_location.position
+	var POS = Vector2(randf_range(200,1600), %Player.position.y + randf_range(0,750))
+
+	BLT.position = POS
 	add_child(BLT)
 	
 func _on_scene_1_timer_timeout() -> void:
@@ -202,31 +205,38 @@ func _on_health_power_timer_timeout() -> void:
 	var HP = power_up_scene.instantiate()
 	HP.connect("heal", _on_power_up_heal)
 	# Choose a random location on Path2D.
-	var HealthUp_spawn_location = %World/Path2D/PathFollow2D/PowerUpPath/PowerUpSpawnLocation
-	HealthUp_spawn_location.progress_ratio = randf()
+	#var HealthUp_spawn_location = %World/Path2D/PathFollow2D/PowerUpPath/PowerUpSpawnLocation
+	#HealthUp_spawn_location.progress_ratio = randf()
+	
+	var POS = Vector2(randf_range(200,1600), %Player.position.y + randf_range(-550,550))
 
+	
 	# Set the mob's position to the random location.
-	HP.position = HealthUp_spawn_location.position
+	HP.position = POS
 	add_child(HP)
 
 func _on_shield_power_timer_timeout() -> void:
 	get_tree().call_group("Shields", "queue_free")
 	var SHLD = Shield_scene.instantiate()
 	SHLD.connect("Shielded", _on_shield_shielded)
-	var ShieldUp_spawn_location = %World/Path2D/PathFollow2D/PowerUpPath/PowerUpSpawnLocation
-	ShieldUp_spawn_location.progress_ratio = randf()
+	#var ShieldUp_spawn_location = %World/Path2D/PathFollow2D/PowerUpPath/PowerUpSpawnLocation
+	#ShieldUp_spawn_location.progress_ratio = randf()
 	# Set the mob's position to the random location.
-	SHLD.position = ShieldUp_spawn_location.position
+	var POS = Vector2(randf_range(200,1600), %Player.position.y + randf_range(-550,550))
+
+	SHLD.position = POS
 	add_child(SHLD)
 	
 func _on_bomb_power_timer_timeout() -> void:
 	get_tree().call_group("Bombs", "queue_free")
 	var BMB = bomb_scene.instantiate()
 	BMB.connect("bomb_collect", _on_bomb_bomb_collect)
-	var BombUp_spawn_location = %World/Path2D/PathFollow2D/PowerUpPath/PowerUpSpawnLocation
-	BombUp_spawn_location.progress_ratio = randf()
+	#var BombUp_spawn_location = %World/Path2D/PathFollow2D/PowerUpPath/PowerUpSpawnLocation
+	#BombUp_spawn_location.progress_ratio = randf()
 	# Set the mob's position to the random location.
-	BMB.position = BombUp_spawn_location.position
+	var POS = Vector2(randf_range(200,1600), %Player.position.y + randf_range(-550,550))
+
+	BMB.position = POS
 	add_child(BMB)
 	
 func _on_power_up_heal() -> void:
@@ -256,3 +266,6 @@ func _on_bomb_bomb_collect() -> void:
 func _on_bolt_bolt_collect() -> void:
 	DashPower = true
 	print(DashPower)
+
+
+	
