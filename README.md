@@ -3,6 +3,7 @@ Written tutorial used: https://docs.godotengine.org/en/stable/getting_started/fi
 Video tutorial used for healthbar help: https://www.youtube.com/watch?v=GwCiGixlqiU&ab_channel=GDQuest 
 Used for sprite help: https://godotengine.org/asset-library/asset/2716
 Used for pause menu: https://www.youtube.com/watch?v=e9-WQg1yMCY
+Used for Control Mapping: https://www.youtube.com/watch?v=ZDPM45cHHlI
 
 Assets:
 	Shield - https://havran.itch.io/wooden-shield-2/download/eyJleHBpcmVzIjoxNzU4MDQzMjIzLCJpZCI6NDIxODk4fQ%3d%3d.IFkfmMzonrk973F011WRAArYqjk%3d 
@@ -14,9 +15,9 @@ Assets:
 	Fish - https://pixelgnome.itch.io/fish/download/eyJleHBpcmVzIjoxNzU5Mjg4MzU2LCJpZCI6MzM0MDE1Nn0%3d.2eGl3ykzsCamsCfUCiaZ9KYS6Y0%3d
 	Shark - https://sergeant-slash.itch.io/32x32-animated-shark-sprite
 	More Underwater Enemies - https://free-game-assets.itch.io/free-underwater-enemies-pixel-art-character-pack
-	SFX - https://freesound.org/people/Joao_Janz/sounds/478342/
-		- https://freesound.org/people/GameAudio/sounds/220173/
-		- https://freesound.org/people/Breviceps/sounds/452998/
+	Shield SFX - https://freesound.org/people/Joao_Janz/sounds/478342/
+	Health SFX - https://freesound.org/people/GameAudio/sounds/220173/
+	Bomb SFX - https://freesound.org/people/Breviceps/sounds/452998/
 	
 9/8-9/9
 	Tutorial took me roughly 3-4 hours to complete
